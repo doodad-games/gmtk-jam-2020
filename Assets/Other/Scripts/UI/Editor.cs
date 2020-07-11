@@ -1,5 +1,5 @@
 using System.Collections;
-using ModIO;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -9,19 +9,50 @@ public class Editor : MonoBehaviour
     const float RESET_SAVE_TEXT_AFTER = 2f;
     const float UPLOAD_COMPLETE_DELAY = 4f;
 
-    static ModData _upcoming;
+    static Editor _i;
 
-    public static void Prepare(ModData data) => _upcoming = data;
+    public static void Save()
+    {
+        if (_i == null) throw new System.NotSupportedException();
+
+        Global.modData.name = _i._name.text;
+        Global.modData.summary = _i._summary.text;
+
+        var levelI = 0;
+        Global.modData.levels = _i._levelContainer
+            .GetComponentsInChildren<EditorLevelRow>()
+            .Where(_ => _?.isActiveAndEnabled ?? false)
+            .Select(_ => {
+                _.level.internalNote = _.noteField.text;
+
+                _.UpdateIndex(levelI);
+                ++levelI;
+
+                return _.level;
+            })
+            .ToList();
+
+        Global.modData.Save();
+        _i._saveText.text = "Saved!";
+        _i._resetSaveText = true;
+        _i._resetSaveTextAfter = Time.unscaledTime + RESET_SAVE_TEXT_AFTER;
+    }
+
+    public static void ValuesChanged(string _)
+    {
+        _i._resave = true;
+        _i._resaveAfter = Time.unscaledTime + NAME_SAVE_DELAY;
+    }
 
 #pragma warning disable CS0649
     [SerializeField] TMP_InputField _name;
     [SerializeField] TMP_InputField _summary;
     [SerializeField] TextMeshProUGUI _saveText;
     [SerializeField] TextMeshProUGUI _uploadText;
-    [SerializeField] GameObject _loginDialog;
+    [SerializeField] Transform _levelContainer;
+    [SerializeField] GameObject _sceneSelectPopup;
+    [SerializeField] Transform _sceneContainer;
 #pragma warning restore CS0649
-
-    ModData _data;
 
     bool _modioUserExists;
 
@@ -33,10 +64,25 @@ public class Editor : MonoBehaviour
     bool _uploadInProgress;
     float _completeUploadAfter;
 
-    void Awake() => _data = _upcoming;
+    void Awake()
+    {
+        for (var i = 0; i != Global.modData.levels.Count; ++i)
+        {
+            var obj = Instantiate(Resources.Load<GameObject>("EditorLevelRow"), _levelContainer);
+            obj.GetComponent<EditorLevelRow>().Init(i);
+            obj.transform.SetSiblingIndex(obj.transform.GetSiblingIndex() - 1);
+        }
+
+        foreach (var scene in GameConfig.scenes)
+            Instantiate(Resources.Load<GameObject>("EditorSceneChoice"), _sceneContainer)
+                .GetComponent<EditorSceneChoice>()
+                .Init(scene.Value);
+    }
 
     void OnEnable()
     {
+        _i = this;
+
         if (!_hasStarted) return;
 
         _name.onValueChanged.AddListener(ValuesChanged);
@@ -54,8 +100,8 @@ public class Editor : MonoBehaviour
         yield return new WaitForEndOfFrame();
         yield return new WaitForEndOfFrame();
 
-        _name.text = _data.name;
-        _summary.text = _data.summary;
+        _name.text = Global.modData.name;
+        _summary.text = Global.modData.summary;
 
         _hasStarted = true;
         OnEnable();
@@ -66,8 +112,6 @@ public class Editor : MonoBehaviour
         if (_resave && Time.unscaledTime > _resaveAfter)
         {
             _resave = false;
-            _data.name = _name.text;
-            _data.summary = _summary.text;
             Save();
         }
 
@@ -92,18 +136,12 @@ public class Editor : MonoBehaviour
 
     void OnDisable()
     {
+        _i = null;
+
         if (!_hasStarted) return;
 
         _name.onValueChanged.RemoveListener(ValuesChanged);
         _summary.onValueChanged.RemoveListener(ValuesChanged);
-    }
-
-    public void Save()
-    {
-        _data.Save();
-        _saveText.text = "Saved!";
-        _resetSaveText = true;
-        _resetSaveTextAfter = Time.unscaledTime + RESET_SAVE_TEXT_AFTER;
     }
 
     public void Upload()
@@ -121,8 +159,10 @@ public class Editor : MonoBehaviour
             ModIOController.ShowLogin();
             UploadComplete();
         }
-        else _data.Upload(UploadSuccessful, UploadFailed);
+        else Global.modData.Upload(UploadSuccessful, UploadFailed);
     }
+
+    public void ChooseNewLevelScene() => _sceneSelectPopup.SetActive(true);
 
     void UploadSuccessful()
     {
@@ -145,11 +185,5 @@ public class Editor : MonoBehaviour
         _uploadText.text = _modioUserExists
             ? "Share via mod.io"
             : "Login to mod.io to share";
-    }
-
-    void ValuesChanged(string _)
-    {
-        _resave = true;
-        _resaveAfter = Time.unscaledTime + NAME_SAVE_DELAY;
     }
 }

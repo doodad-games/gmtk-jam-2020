@@ -5,8 +5,13 @@ public class Navigation : MonoBehaviour
 {
     public static void GoToEditor(ModData modData)
     {
-        Editor.Prepare(modData);
+        Global.SetCurrentModData(modData);
         SceneManager.LoadScene("Editor");
+    }
+    public static void GoToEditLevel(LevelData level)
+    {
+        Global.SetCurrentLevelData(level, true);
+        SceneManager.LoadScene(level.sceneKey);
     }
 
     public void ShowModIO() => ModIOController.ShowMain();
@@ -14,7 +19,8 @@ public class Navigation : MonoBehaviour
     public void GoToEditorSelect() => SceneManager.LoadScene("EditorSelect");
     public void GoToEditorNew()
     {
-        Editor.Prepare(ModData.NewLocal());
+        Global.SetCurrentModData(ModData.NewLocal());
         SceneManager.LoadScene("Editor");
     }
+    public void GoToEditorCurrent() => SceneManager.LoadScene("Editor");
 }

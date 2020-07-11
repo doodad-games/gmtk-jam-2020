@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using ModIO;
 using ModIO.UI;
 using UnityEngine;
@@ -26,6 +27,8 @@ public class ModIOController : MonoBehaviour
     public static void HideMain()
     {
         foreach (var obj in _i._toDisable) obj.SetActive(false);
+        
+        AvailableMods.Refresh();
     }
 
     public static void DisplayWebError(WebRequestError error) =>
