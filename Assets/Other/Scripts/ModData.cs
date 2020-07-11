@@ -16,13 +16,18 @@ public static class AvailableMods
         onUpdated?.Invoke();
     }
 
-    static ModData[] GetLocalMods() => Directory.GetDirectories(ModData.localModPath)
-        .Select(path => {
-            var dir = new DirectoryInfo(path);
-            var guid = dir.Name;
-            return ModData.GetLocal(guid);
-        })
-        .ToArray();
+    static ModData[] GetLocalMods()
+    {
+        if (!Directory.Exists(ModData.localModPath)) return new ModData[] {};
+
+        return Directory.GetDirectories(ModData.localModPath)
+            .Select(path => {
+                var dir = new DirectoryInfo(path);
+                var guid = dir.Name;
+                return ModData.GetLocal(guid);
+            })
+            .ToArray();
+    }
     
     static void GetModIOMods()
     {
@@ -91,6 +96,7 @@ public class ModData
         var path = Path.Combine(dir, DATA_FILE_NAME);
 
         var mod = FromPath(path);
+        mod.id = profile.id.ToString();
         mod.source = Source.ModIO;
         mod.modFileID = modFileID;
         mod.modUserID = profile.submittedBy.id;
@@ -111,9 +117,10 @@ public class ModData
     public string summary;
     public Source source;
 
-    public int modID => Int32.Parse(id);
     public int modFileID;
     public int modUserID;
+
+    public int modID => Int32.Parse(id);
 
     public string dirPath => source == Source.Local
         ? Path.Combine(localModPath, id)
