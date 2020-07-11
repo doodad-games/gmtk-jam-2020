@@ -37,6 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Other\Scripts\Global.cs" />
+     <Compile Include="Assets\Other\Scripts\MenuModButton.cs" />
      <Compile Include="Assets\Other\Scripts\ModData.cs" />
      <Compile Include="Assets\Other\Scripts\ModIOCloseButton.cs" />
      <Compile Include="Assets\Other\Scripts\ModIOController.cs" />
@@ -45,6 +46,7 @@
      <Compile Include="Assets\Other\Scripts\UI\Editor.cs" />
      <Compile Include="Assets\Other\Scripts\UI\EditorSelect.cs" />
      <Compile Include="Assets\Other\Scripts\UI\EditorSelectExistingMod.cs" />
+     <Compile Include="Assets\Other\Scripts\UI\Menu.cs" />
     <Reference Include="UnityEngine">
         <HintPath>/Applications/Unity/2019.4.3f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
@@ -656,6 +658,9 @@
     </Reference>
     <Reference Include="Unity.InternalAPIEditorBridge.001">
         <HintPath>/Users/bilalakil/Developer/github.com/doodad-games/gmtk-jam-2020/Library/ScriptAssemblies/Unity.InternalAPIEditorBridge.001.dll</HintPath>
+    </Reference>
+    <Reference Include="BilalAkil.MyLibrary.Runtime">
+        <HintPath>/Users/bilalakil/Developer/github.com/doodad-games/gmtk-jam-2020/Library/ScriptAssemblies/BilalAkil.MyLibrary.Runtime.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

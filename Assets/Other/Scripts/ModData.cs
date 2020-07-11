@@ -39,7 +39,6 @@ public static class AvailableMods
             idPairs.Select(_ => _.modId),
             (profiles) => {
                 modIOMods = profiles
-                    .Where(_ => _.submittedBy.id == UserAuthenticationData.instance.userId)
                     .Select(ModData.FromModIOProfile)
                     .ToArray();
                 onUpdated?.Invoke();
@@ -94,6 +93,7 @@ public class ModData
         var mod = FromPath(path);
         mod.source = Source.ModIO;
         mod.modFileID = modFileID;
+        mod.modUserID = profile.submittedBy.id;
 
         return mod;
     }
@@ -113,10 +113,14 @@ public class ModData
 
     public int modID => Int32.Parse(id);
     public int modFileID;
+    public int modUserID;
 
     public string dirPath => source == Source.Local
         ? Path.Combine(localModPath, id)
         : ModManager.GetModInstallDirectory(modID, modFileID);
+    
+    public bool isFromCurrentUser => ModIOController.userExists &&
+        modUserID == UserAuthenticationData.instance.userId;
 
     public void Save()
     {
@@ -184,6 +188,7 @@ public class ModData
                         id = modInfo.id.ToString();
                         modFileID = modFile.id;
                         source = Source.ModIO;
+                        modUserID = UserAuthenticationData.instance.userId;
 
                         Save();
                     }

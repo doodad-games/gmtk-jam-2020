@@ -1,7 +1,6 @@
-﻿using System.Linq;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class EditorSelect : MonoBehaviour
+public class Menu : MonoBehaviour
 {
 #pragma warning disable CS0649
     [SerializeField] GameObject _noLocalMods;
@@ -24,15 +23,14 @@ public class EditorSelect : MonoBehaviour
     {
         _noLocalMods.SetActive(AvailableMods.localMods.Count == 0);
         foreach (var mod in AvailableMods.localMods)
-            Instantiate(Resources.Load<GameObject>("EditorSelectExistingLocalMod"), _localContainer)
-                .GetComponent<EditorSelectExistingMod>()
+            Instantiate(Resources.Load<GameObject>("MenuModButton"), _localContainer)
+                .GetComponent<MenuModButton>()
                 .Init(mod);
 
-        var modIOMods = AvailableMods.modIOMods.Where(_ => _.isFromCurrentUser).ToArray();
-        _noModIOMods.SetActive(modIOMods.Length != 0);
-        foreach (var mod in modIOMods)
-            Instantiate(Resources.Load<GameObject>("EditorSelectExistingModIOMod"), _modIOContainer)
-                .GetComponent<EditorSelectExistingMod>()
+        _noModIOMods.SetActive(AvailableMods.modIOMods.Count == 0);
+        foreach (var mod in AvailableMods.modIOMods)
+            Instantiate(Resources.Load<GameObject>("MenuModButton"), _modIOContainer)
+                .GetComponent<MenuModButton>()
                 .Init(mod);
     }
 }
