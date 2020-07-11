@@ -15,7 +15,5 @@ public class MenuModButton : MonoBehaviour
         _name.text = data.name;
     }
 
-    public void Pressed()
-    {
-    }
+    public void Pressed() => Menu.SelectMod(_data);
 }

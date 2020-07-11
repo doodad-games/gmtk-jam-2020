@@ -39,7 +39,6 @@
      <Compile Include="Assets\Other\Scripts\GameConfig.cs" />
      <Compile Include="Assets\Other\Scripts\Global.cs" />
      <Compile Include="Assets\Other\Scripts\LevelData.cs" />
-     <Compile Include="Assets\Other\Scripts\MenuModButton.cs" />
      <Compile Include="Assets\Other\Scripts\ModData.cs" />
      <Compile Include="Assets\Other\Scripts\ModIOCloseButton.cs" />
      <Compile Include="Assets\Other\Scripts\ModIOController.cs" />
@@ -53,6 +52,8 @@
      <Compile Include="Assets\Other\Scripts\UI\EditorSelect.cs" />
      <Compile Include="Assets\Other\Scripts\UI\EditorSelectExistingMod.cs" />
      <Compile Include="Assets\Other\Scripts\UI\Menu.cs" />
+     <Compile Include="Assets\Other\Scripts\UI\MenuLevelChoice.cs" />
+     <Compile Include="Assets\Other\Scripts\UI\MenuModButton.cs" />
     <Reference Include="UnityEngine">
         <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.3f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

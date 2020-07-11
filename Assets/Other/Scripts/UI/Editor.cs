@@ -13,7 +13,7 @@ public class Editor : MonoBehaviour
 
     public static void Save()
     {
-        if (_i == null) throw new System.NotSupportedException();
+        if (_i == null) throw new System.Exception();
 
         Global.modData.name = _i._name.text;
         Global.modData.summary = _i._summary.text;
