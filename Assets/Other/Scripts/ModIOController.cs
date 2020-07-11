@@ -34,13 +34,16 @@ public class ModIOController : MonoBehaviour
             error.displayMessage
         );
 
-    public static void UpdateInstalledMods() =>
-        _i.StartCoroutine(ModManager.DownloadAndUpdateMods_Coroutine(
-            ModManager.GetInstalledModVersions(false)
-                .Select(_ => _.modId)
-                .ToArray(),
-            null
-        ));
+    public static void UpdateInstalledMods()
+    {
+        var mods = ModManager.GetInstalledModVersions(false)
+            .Select(_ => _.modId)
+            .ToArray();
+
+        if (mods.Length == 0) return;
+
+        _i.StartCoroutine(ModManager.DownloadAndUpdateMods_Coroutine(mods, null));
+    }
 
 #pragma warning disable CS0649
     [SerializeField] GameObject _blur;
