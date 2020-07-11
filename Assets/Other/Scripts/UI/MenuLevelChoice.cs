@@ -18,4 +18,6 @@ public class MenuLevelChoice : MonoBehaviour
         _thumb.sprite = GameConfig.scenes[_level.sceneKey].thumbnail;
         _levelIndicator.text = (i + 1).ToString();
     }
+
+    public void Pressed() => Navigation.GoToPlayLevel(_level);
 }

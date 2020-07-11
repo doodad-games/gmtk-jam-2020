@@ -38,6 +38,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2154256932325166501}
     m_Modifications:
+    - target: {fileID: 324247581687578326, guid: f1c3b3116f307bc4cbe9eb50e1428fd6,
+        type: 3}
+      propertyPath: m_MaskInteraction
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1204358968533369117, guid: f1c3b3116f307bc4cbe9eb50e1428fd6,
         type: 3}
       propertyPath: m_Bounds.m_Center.x
@@ -57,6 +62,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Bounds.m_Extent.y
       value: 0.75710964
+      objectReference: {fileID: 0}
+    - target: {fileID: 2262215608804804470, guid: f1c3b3116f307bc4cbe9eb50e1428fd6,
+        type: 3}
+      propertyPath: m_MaskInteraction
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2688791295783995861, guid: f1c3b3116f307bc4cbe9eb50e1428fd6,
+        type: 3}
+      propertyPath: m_MaskInteraction
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2778059922937577264, guid: f1c3b3116f307bc4cbe9eb50e1428fd6,
+        type: 3}
+      propertyPath: m_MaskInteraction
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2801518315078504806, guid: f1c3b3116f307bc4cbe9eb50e1428fd6,
+        type: 3}
+      propertyPath: m_MaskInteraction
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3367889396889763875, guid: f1c3b3116f307bc4cbe9eb50e1428fd6,
         type: 3}
@@ -112,6 +137,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Bounds.m_Extent.y
       value: 0.75710964
+      objectReference: {fileID: 0}
+    - target: {fileID: 5076433342087819668, guid: f1c3b3116f307bc4cbe9eb50e1428fd6,
+        type: 3}
+      propertyPath: m_MaskInteraction
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5202631776663621180, guid: f1c3b3116f307bc4cbe9eb50e1428fd6,
+        type: 3}
+      propertyPath: m_MaskInteraction
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5443315062511318831, guid: f1c3b3116f307bc4cbe9eb50e1428fd6,
+        type: 3}
+      propertyPath: m_MaskInteraction
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7161792311215930119, guid: f1c3b3116f307bc4cbe9eb50e1428fd6,
+        type: 3}
+      propertyPath: m_MaskInteraction
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8110728527474284772, guid: f1c3b3116f307bc4cbe9eb50e1428fd6,
         type: 3}
@@ -192,6 +237,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Bounds.m_Extent.y
       value: 0.75710964
+      objectReference: {fileID: 0}
+    - target: {fileID: 8247334792044099299, guid: f1c3b3116f307bc4cbe9eb50e1428fd6,
+        type: 3}
+      propertyPath: m_MaskInteraction
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8396262374584863522, guid: f1c3b3116f307bc4cbe9eb50e1428fd6,
+        type: 3}
+      propertyPath: m_MaskInteraction
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8725389802862262561, guid: f1c3b3116f307bc4cbe9eb50e1428fd6,
+        type: 3}
+      propertyPath: m_MaskInteraction
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8843908506748444198, guid: f1c3b3116f307bc4cbe9eb50e1428fd6,
+        type: 3}
+      propertyPath: m_MaskInteraction
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1c3b3116f307bc4cbe9eb50e1428fd6, type: 3}

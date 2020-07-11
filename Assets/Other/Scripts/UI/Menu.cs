@@ -1,5 +1,4 @@
-﻿using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Menu : MonoBehaviour
 {
@@ -8,9 +7,7 @@ public class Menu : MonoBehaviour
     public static void SelectMod(ModData mod)
     {
         if (_i == null) throw new System.Exception();
-
-        Global.SetCurrentModData(mod);
-        _i.UpdateLevelList();
+        Global.modData = mod;
     }
 
 #pragma warning disable CS0649
@@ -18,7 +15,6 @@ public class Menu : MonoBehaviour
     [SerializeField] Transform _localContainer;
     [SerializeField] GameObject _noModIOMods;
     [SerializeField] Transform _modIOContainer;
-    [SerializeField] TextMeshProUGUI _selectedMod;
     [SerializeField] Transform _levelContainer;
 #pragma warning restore CS0649
 
@@ -27,9 +23,11 @@ public class Menu : MonoBehaviour
         _i = this;
         AvailableMods.Refresh();
         UpdateModLists();
+        UpdateLevelList();
 
         AvailableMods.onUpdated += UpdateModLists;
         AvailableMods.onUpdated += UpdateLevelList;
+        Global.onModDataChanged += UpdateLevelList;
     }
 
     void OnDisable()
@@ -37,6 +35,7 @@ public class Menu : MonoBehaviour
         _i = null;
         AvailableMods.onUpdated -= UpdateModLists;
         AvailableMods.onUpdated -= UpdateLevelList;
+        Global.onModDataChanged -= UpdateLevelList;
     }
 
     void UpdateModLists()
@@ -60,10 +59,10 @@ public class Menu : MonoBehaviour
 
     void UpdateLevelList()
     {
-        _selectedMod.text = Global.modData.name;
-
         for (var i = _levelContainer.childCount - 1; i != -1; --i)
             Destroy(_levelContainer.GetChild(i).gameObject);
+
+        if (Global.modData == null) return;
 
         for (var i = 0; i != Global.modData.levels.Count; ++i)
             Instantiate(Resources.Load<GameObject>("MenuLevelChoice"), _levelContainer)
