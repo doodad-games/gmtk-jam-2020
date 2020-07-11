@@ -31,12 +31,6 @@ public static class AvailableMods
     
     static void GetModIOMods()
     {
-        if (!ModIOController.userExists)
-        {
-            modIOMods = new ModData[] {};
-            return;
-        }
-
         var idPairs = new List<ModfileIdPair>();
         foreach (var kvp in ModManager.IterateInstalledMods(null)) idPairs.Add(kvp.Key);
 
@@ -44,7 +38,17 @@ public static class AvailableMods
             idPairs.Select(_ => _.modId),
             (profiles) => {
                 modIOMods = profiles
-                    .Select(ModData.FromModIOProfile)
+                    .Select(_ => {
+                        try
+                        {
+                            return ModData.FromModIOProfile(_);
+                        }
+                        catch (IOException)
+                        {
+                            return null;
+                        }
+                    })
+                    .Where(_ => _ != null)
                     .ToArray();
                 onUpdated?.Invoke();
             },
@@ -112,10 +116,10 @@ public class ModData
         return mod;
     }
 
+    // Control data
     public string id;
-    public string name;
-    public string summary;
     public Source source;
+    public string summary;
 
     public int modFileID;
     public int modUserID;
@@ -193,12 +197,12 @@ public class ModData
                         ModManager.SetEnabledModIds(enabled);
 
                         id = modInfo.id.ToString();
-                        modFileID = modFile.id;
                         source = Source.ModIO;
                         modUserID = UserAuthenticationData.instance.userId;
-
-                        Save();
                     }
+
+                    modFileID = modFile.id;
+                    Save();
 
                     successCB();
 
@@ -225,4 +229,8 @@ public class ModData
         Local,
         ModIO
     }
+
+    // Game data
+    public string name;
+    public List<LevelData> levels = new List<LevelData>();
 }
