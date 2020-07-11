@@ -1,13 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mod.io.UnityPlugin", "mod.io.UnityPlugin.csproj", "{d98d6114-4a20-42e3-6dd7-4fe725e1f512}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{ff9e7708-249e-fbad-fda1-557073fbb813}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-
+		{d98d6114-4a20-42e3-6dd7-4fe725e1f512}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{d98d6114-4a20-42e3-6dd7-4fe725e1f512}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ff9e7708-249e-fbad-fda1-557073fbb813}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ff9e7708-249e-fbad-fda1-557073fbb813}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

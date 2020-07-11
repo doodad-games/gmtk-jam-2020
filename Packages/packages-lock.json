@@ -99,6 +99,13 @@
         "com.unity.modules.ui": "1.0.0"
       }
     },
+    "me.bilalakil.my-unity-library": {
+      "version": "https://github.com/bilalakil/my-unity-library.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "4d5a0c637df328913b9860e7d081ce4689dc1dfe"
+    },
     "com.unity.modules.ai": {
       "version": "1.0.0",
       "depth": 0,

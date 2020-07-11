@@ -7,6 +7,7 @@
     "com.unity.render-pipelines.universal": "7.3.1",
     "com.unity.textmeshpro": "2.0.1",
     "com.unity.ugui": "1.0.0",
+    "me.bilalakil.my-unity-library": "https://github.com/bilalakil/my-unity-library.git",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
     "com.unity.modules.animation": "1.0.0",
