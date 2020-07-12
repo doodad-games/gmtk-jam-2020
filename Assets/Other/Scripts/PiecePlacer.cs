@@ -11,8 +11,12 @@ public class PiecePlacer : MonoBehaviour
     [SerializeField] SpriteRenderer _ghost;
 #pragma warning restore CS0649
 
+    Color _ghostStartingColour;
+
     bool _isPieceValid => _curPiece != null && !_curPiece.isFakeDeletePiece;
     PieceData _curPiece;
+
+    void Awake() => _ghostStartingColour = _ghost.color;
 
     void OnEnable()
     {
@@ -47,7 +51,7 @@ public class PiecePlacer : MonoBehaviour
 
         if (_isPieceValid)
         {
-            _ghost.color = Color.white;
+            _ghost.color = _ghostStartingColour;
             _ghost.sprite = _curPiece.ghost;
 
             _validity.color = _isPieceValid ? _valid : _invalid;
