@@ -49,6 +49,7 @@
      <Compile Include="Assets\Other\Scripts\Player.cs" />
      <Compile Include="Assets\Other\Scripts\PlayerInputController.cs" />
      <Compile Include="Assets\Other\Scripts\SceneConfig.cs" />
+     <Compile Include="Assets\Other\Scripts\StartPoint.cs" />
      <Compile Include="Assets\Other\Scripts\TextStyle.cs" />
      <Compile Include="Assets\Other\Scripts\UI\AvailablePieceButton.cs" />
      <Compile Include="Assets\Other\Scripts\UI\Editor.cs" />
