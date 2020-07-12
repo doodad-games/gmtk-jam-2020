@@ -15,13 +15,13 @@ public class Piece : MonoBehaviour
     void OnEnable()
     {
         Player.onSelectedPieceChanged += Refresh;
-        Player.onStartStopped += HandleStartStopped;
+        Player.onShouldClear += HandleClear;
     }
 
     void OnDisable()
     {
         Player.onSelectedPieceChanged -= Refresh;
-        Player.onStartStopped -= HandleStartStopped;
+        Player.onShouldClear -= HandleClear;
     }
 
     public void Init(Placement placement, bool isSetPiece)
@@ -45,7 +45,7 @@ public class Piece : MonoBehaviour
     void Refresh() =>
         _ghost.gameObject.SetActive(_canBeDeleted);
     
-    void HandleStartStopped()
+    void HandleClear()
     {
         if (!Player.rolling) Destroy(gameObject);
     }

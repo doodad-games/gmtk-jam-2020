@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
 
     public static event Action onSelectedPieceChanged;
     public static event Action onStartStopped;
+    public static event Action onShouldClear;
     public static event Action onNewMovementStarted;
     public static event Action onVictoryChanged;
     public static event Action<Placement> onPlaced;
@@ -52,6 +53,11 @@ public class Player : MonoBehaviour
     public static void Place(Placement placement)
     {
         if (isPlayMode) _i._puzzlePlacements.Add(placement);
+        else
+        {
+            Global.levelData.setPieces.Add(placement);
+            Global.modData.Save();
+        }
 
         Place(placement, !isPlayMode);
     }
@@ -133,6 +139,8 @@ public class Player : MonoBehaviour
     [SerializeField] TextMeshProUGUI _winLoseText;
     [SerializeField] GameObject _nextLevelButton;
     [SerializeField] Transform _puzzlePieceContainer;
+    [SerializeField] GameObject[] _enabledDuringTestMode;
+    [SerializeField] GameObject _backToEditModButton;
 #pragma warning restore CS0649
 
     PieceData _selectedPiece;
@@ -162,6 +170,7 @@ public class Player : MonoBehaviour
         foreach (var obj in toEnable) obj.SetActive(true);
 
         DoPiecePlacements();
+        RefreshTestModeDisplay();
 
         foreach (var dir in Global.levelData.movementSequence)
             InstantiateMovement(dir);
@@ -238,10 +247,12 @@ public class Player : MonoBehaviour
 
         if (wasPlaying)
         {
+            onShouldClear?.Invoke();
+
             Time.timeScale = 0;
             _playing = false;
 
-            if (Global.isEditMode)
+            if (!isPlayMode)
             {
                 _editSequencer.SetActive(true);
                 _testSequencer.SetActive(false);
@@ -279,6 +290,19 @@ public class Player : MonoBehaviour
         Navigation.GoToPlayLevel(
             Global.modData.levels[Global.modData.levels.IndexOf(Global.levelData) + 1]
         );
+    }
+
+    public void ToggleTestMode()
+    {
+        if (rolling) ToggleStartStop();
+
+        onShouldClear?.Invoke();
+        _puzzlePlacements = new List<Placement>();
+
+        _isTestMode = !_isTestMode;
+
+        DoPiecePlacements();
+        RefreshTestModeDisplay();
     }
 
     void InstantiateMovement(int dir)
@@ -323,6 +347,19 @@ public class Player : MonoBehaviour
 
         foreach (var placement in _puzzlePlacements)
             Place(placement, false);
+    }
+
+    void RefreshTestModeDisplay()
+    {
+        if (!Global.isEditMode) return;
+
+        foreach (var obj in _enabledDuringTestMode)
+            obj.SetActive(_isTestMode);
+
+        _editPuzzlePieces.SetActive(!_isTestMode);
+        _playPuzzlePieces.SetActive(_isTestMode);
+
+        _backToEditModButton.SetActive(!_isTestMode);
     }
 }
 
