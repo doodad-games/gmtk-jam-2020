@@ -683,9 +683,6 @@
     <Reference Include="Unity.InternalAPIEditorBridge.001">
         <HintPath>C:/Users/mail/git/gmtk-jam-2020/Library/ScriptAssemblies/Unity.InternalAPIEditorBridge.001.dll</HintPath>
     </Reference>
-    <Reference Include="BilalAkil.MyLibrary.Runtime">
-        <HintPath>C:/Users/mail/git/gmtk-jam-2020/Library/ScriptAssemblies/BilalAkil.MyLibrary.Runtime.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor.UI">
         <HintPath>C:/Users/mail/git/gmtk-jam-2020/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
