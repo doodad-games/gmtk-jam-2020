@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
+    const float Y_WHOOSH_AFTER = -10f;
     const float Y_CUTOFF = -12f;
 
     public Animator anim => _anim;
@@ -13,6 +14,7 @@ public class Character : MonoBehaviour
     StartPoint _sp;
 
     bool _finished;
+    bool _whooshed;
 
     void Awake() => _sp = GetComponentInParent<StartPoint>();
 
@@ -34,6 +36,12 @@ public class Character : MonoBehaviour
 
     void Update()
     {
+        if (!_whooshed && transform.position.y < Y_WHOOSH_AFTER)
+        {
+            _whooshed = true;
+            SoundController.Play("fall");
+        }
+
         if (transform.position.y < Y_CUTOFF) Die();
     }
 

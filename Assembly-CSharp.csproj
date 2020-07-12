@@ -36,6 +36,7 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Other\Scripts\AnimatorHelper.cs" />
      <Compile Include="Assets\Other\Scripts\Character.cs" />
      <Compile Include="Assets\Other\Scripts\CharacterMovement.cs" />
      <Compile Include="Assets\Other\Scripts\FinishPoint.cs" />
