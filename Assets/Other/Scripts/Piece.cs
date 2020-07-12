@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class Piece : MonoBehaviour
 {
-    bool _canBeDeleted => Player.deleting &&
-        _isSetPiece == Global.isEditMode;
+    bool _canBeDeleted => Player.deleting && _isSetPiece != Player.isPlayMode;
 
 #pragma warning disable CS0649
     [SerializeField] SpriteRenderer _ghost;
@@ -16,13 +15,13 @@ public class Piece : MonoBehaviour
     void OnEnable()
     {
         Player.onSelectedPieceChanged += Refresh;
-        Player.onPreStartStopped += HandleStartStopped;
+        Player.onShouldClear += HandleClear;
     }
 
     void OnDisable()
     {
         Player.onSelectedPieceChanged -= Refresh;
-        Player.onPreStartStopped -= HandleStartStopped;
+        Player.onShouldClear -= HandleClear;
     }
 
     public void Init(Placement placement, bool isSetPiece)
@@ -39,15 +38,15 @@ public class Piece : MonoBehaviour
         if (_canBeDeleted)
         {
             Destroy(gameObject);
-            _placement.Delete();
+            Player.UnregisterPlaced(_placement);
         }
     }
 
     void Refresh() =>
         _ghost.gameObject.SetActive(_canBeDeleted);
     
-    void HandleStartStopped()
+    void HandleClear()
     {
-        if (!Player.playing) Destroy(gameObject);
+        if (!Player.rolling) Destroy(gameObject);
     }
 }

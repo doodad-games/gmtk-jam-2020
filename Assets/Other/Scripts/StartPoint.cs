@@ -16,14 +16,14 @@ public class StartPoint : MonoBehaviour
     void OnEnable()
     {
         Player.RegisterStartPoint(this);
-        Player.onPreStartStopped += MaybeSpawnCharacter;
+        Player.onStartStopped += MaybeSpawnCharacter;
         MaybeSpawnCharacter();
     }
 
     void OnDisable()
     {
         Player.DeregisterStartPoint(this);
-        Player.onPreStartStopped -= MaybeSpawnCharacter;
+        Player.onStartStopped -= MaybeSpawnCharacter;
     }
 
     public void SetDied()
@@ -40,7 +40,7 @@ public class StartPoint : MonoBehaviour
 
     void MaybeSpawnCharacter()
     {
-        if (!Player.playing || _spawnedChar) return;
+        if (!Player.rolling || _spawnedChar) return;
         _spawnedChar = true;
 
         _char = Instantiate(Resources.Load<GameObject>("Character"), transform);

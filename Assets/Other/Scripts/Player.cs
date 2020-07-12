@@ -12,10 +12,12 @@ public class Player : MonoBehaviour
     const float SEQUENCER_UI_DIST_PER_SEC = 60f;
 
     public static event Action onSelectedPieceChanged;
-    public static event Action onPreStartStopped;
-    public static event Action onPostStartStopped;
+    public static event Action onStartStopped;
+    public static event Action onShouldClear;
     public static event Action onNewMovementStarted;
     public static event Action onVictoryChanged;
+    public static event Action<Placement> onPlaced;
+    public static event Action<Placement> onUnplaced;
 
     public static PieceData selectedPiece
     {
@@ -28,9 +30,10 @@ public class Player : MonoBehaviour
     }
 
     public static bool deleting => selectedPiece?.isFakeDeletePiece ?? false;
-    public static bool playing => _i._playing;
+    public static bool rolling => _i._playing;
+    public static bool isPlayMode => !Global.isEditMode || _i._isTestMode;
     public static Movement curMovement => _i._curMovement;
-    public static float passedTime => playing ? Time.time - _i._playTime : 0;
+    public static float passedTime => rolling ? Time.time - _i._playTime : 0;
     public static float sequenceTotalTime => Global.levelData.movementSequence.Count * TIME_PER_MOVEMENT;
     public static bool outOfTime => passedTime > sequenceTotalTime;
     public static bool isGameOver => isLose || isVictory;
@@ -47,16 +50,25 @@ public class Player : MonoBehaviour
         { 3, new Movement { dir = Vector2.left, buttonRotation = 180 } }
     };
 
-    public static void Place(Placement placement) 
+    public static void Place(Placement placement)
     {
-        var piece = GameConfig.pieces[placement.pieceKey];
+        if (isPlayMode) _i._puzzlePlacements.Add(placement);
+        else
+        {
+            Global.levelData.setPieces.Add(placement);
+            Global.modData.Save();
+        }
 
-        GameObject.Instantiate(
-            piece.objs.PickRandom(),
-            new Vector3(placement.x, placement.y, 0f), Quaternion.identity
-        )
-            .GetComponent<Piece>()
-            .Init(placement, true);
+        Place(placement, !isPlayMode);
+    }
+
+    public static void UnregisterPlaced(Placement placement)
+    {
+        placement.Delete();
+
+        if (isPlayMode) _i._puzzlePlacements.Remove(placement);
+
+        onUnplaced?.Invoke(placement);
     }
 
     public static void RegisterStartPoint(StartPoint sp)
@@ -66,14 +78,28 @@ public class Player : MonoBehaviour
     }
     public static void DeregisterStartPoint(StartPoint sp)
     {
-        if (_i == null) return;
+        if (_i == null || _i._tearingDown) return;
         _i._startPoints.Remove(sp);
         HandleVictoryChanges();
     }
 
+    static void Place(Placement placement, bool isSetPiece)
+    {
+        var piece = GameConfig.pieces[placement.pieceKey];
+
+        GameObject.Instantiate(
+            piece.objs.PickRandom(),
+            new Vector3(placement.x, placement.y, 0f), Quaternion.identity
+        )
+            .GetComponent<Piece>()
+            .Init(placement, isSetPiece);
+
+        onPlaced?.Invoke(placement);
+    }
+
     static void HandleVictoryChanges()
     {
-        if (!playing)
+        if (!rolling)
         {
             _i._winLosePopup.SetActive(false);
             return;
@@ -101,7 +127,7 @@ public class Player : MonoBehaviour
 
 #pragma warning disable CS0649
     [SerializeField] GameObject[] _editorSpecific;
-    [SerializeField] GameObject[] _playModeSpecific;
+    [SerializeField] GameObject[] _nonEditorSpecific;
     [SerializeField] Transform[] _movementContainers;
     [SerializeField] ScrollRect _sequenceScrollView;
     [SerializeField] RectTransform[] _liveSequencersToOffset;
@@ -112,6 +138,9 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject _winLosePopup;
     [SerializeField] TextMeshProUGUI _winLoseText;
     [SerializeField] GameObject _nextLevelButton;
+    [SerializeField] Transform _puzzlePieceContainer;
+    [SerializeField] GameObject[] _enabledDuringTestMode;
+    [SerializeField] GameObject _backToEditModButton;
 #pragma warning restore CS0649
 
     PieceData _selectedPiece;
@@ -120,6 +149,9 @@ public class Player : MonoBehaviour
     float _playTime;
     int _curSequenceId;
     Movement _curMovement;
+    bool _isTestMode;
+    List<Placement> _puzzlePlacements = new List<Placement>();
+    bool _tearingDown;
 
     HashSet<StartPoint> _startPoints = new HashSet<StartPoint>();
 
@@ -134,10 +166,11 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        var toEnable = Global.isEditMode ? _editorSpecific : _playModeSpecific;
+        var toEnable = Global.isEditMode ? _editorSpecific : _nonEditorSpecific;
         foreach (var obj in toEnable) obj.SetActive(true);
 
-        DoPlacements();
+        DoPiecePlacements();
+        RefreshTestModeDisplay();
 
         foreach (var dir in Global.levelData.movementSequence)
             InstantiateMovement(dir);
@@ -158,7 +191,7 @@ public class Player : MonoBehaviour
             } else ++_justAddedToScrollView;
         }
 
-        if (playing)
+        if (rolling)
         {
             UpdateLiveSequencers();
 
@@ -210,23 +243,22 @@ public class Player : MonoBehaviour
         var wasPlaying = _playing;
         _playing = !wasPlaying;
 
-        onPreStartStopped?.Invoke();
+        onStartStopped?.Invoke();
 
         if (wasPlaying)
         {
+            onShouldClear?.Invoke();
+
             Time.timeScale = 0;
             _playing = false;
 
-            if (Global.isEditMode)
+            if (!isPlayMode)
             {
                 _editSequencer.SetActive(true);
                 _testSequencer.SetActive(false);
-
-                _editPuzzlePieces.SetActive(true);
-                _playPuzzlePieces.SetActive(false);
             }
 
-            DoPlacements();
+            DoPiecePlacements();
             UpdateLiveSequencers();
         }
         else
@@ -237,27 +269,35 @@ public class Player : MonoBehaviour
             _playTime = Time.time;
             _curSequenceId = -1;
 
-            if (Global.isEditMode)
+            if (!isPlayMode)
             {
                 _editSequencer.SetActive(false);
                 _testSequencer.SetActive(true);
-
-                _editPuzzlePieces.SetActive(false);
-                _playPuzzlePieces.SetActive(true);
             }
         }
-
-        onPostStartStopped?.Invoke();
     }
 
-    public void PlayNextLevel() => Navigation.GoToPlayLevel(
-        Global.modData.levels[Global.modData.levels.IndexOf(Global.levelData) + 1]
-    );
-
-    void DoPlacements()
+    public void PlayNextLevel()
     {
-        foreach (var placement in Global.levelData.setPieces)
-            Place(placement);
+        _tearingDown = true;
+
+        Navigation.GoToPlayLevel(
+            Global.modData.levels[Global.modData.levels.IndexOf(Global.levelData) + 1]
+        );
+    }
+
+    public void ToggleTestMode()
+    {
+        selectedPiece = null;
+        if (rolling) ToggleStartStop();
+
+        onShouldClear?.Invoke();
+        _puzzlePlacements = new List<Placement>();
+
+        _isTestMode = !_isTestMode;
+
+        DoPiecePlacements();
+        RefreshTestModeDisplay();
     }
 
     void InstantiateMovement(int dir)
@@ -278,6 +318,43 @@ public class Player : MonoBehaviour
                 seqOffset,
                 tfm.sizeDelta.x
             );
+    }
+
+    void DoPiecePlacements()
+    {
+        DoSetPiecePlacements();
+        if (isPlayMode) DoPuzzlePiecePlacements();
+    }
+
+    void DoSetPiecePlacements()
+    {
+        foreach (var placement in Global.levelData.setPieces)
+            Place(placement, true);
+    }
+
+    void DoPuzzlePiecePlacements()
+    {
+        for (var i = _puzzlePieceContainer.childCount - 1; i != -1; --i)
+            Destroy(_puzzlePieceContainer.GetChild(i).gameObject);
+        foreach (var ap in Global.levelData.availablePieces)
+            Instantiate(Resources.Load<GameObject>("PlayPuzzlePiece"), _puzzlePieceContainer)
+                .GetComponent<PlayPuzzlePiece>().Init(ap);
+
+        foreach (var placement in _puzzlePlacements)
+            Place(placement, false);
+    }
+
+    void RefreshTestModeDisplay()
+    {
+        if (!Global.isEditMode) return;
+
+        foreach (var obj in _enabledDuringTestMode)
+            obj.SetActive(_isTestMode);
+
+        _editPuzzlePieces.SetActive(!_isTestMode);
+        _playPuzzlePieces.SetActive(_isTestMode);
+
+        _backToEditModButton.SetActive(!_isTestMode);
     }
 }
 

@@ -62,6 +62,12 @@ public class PiecePlacer : MonoBehaviour
     void HandleGameWorldClicked()
     {
         if (!_isPieceValid) return;
-        _curPiece.PlaceAt((int)transform.position.x, (int)transform.position.y);
+
+        var x = (int)transform.position.x;
+        var y = (int)transform.position.y;
+
+        var placement = new Placement { pieceKey = _curPiece.key, x = x, y = y };
+
+        Player.Place(placement);
     }
 }

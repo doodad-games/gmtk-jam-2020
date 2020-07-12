@@ -9,14 +9,4 @@ public class PieceData : ScriptableObject
     public GameObject[] objs;
     public Sprite thumbnail;
     public Sprite ghost;
-
-    public void PlaceAt(int x, int y)
-    {
-        var placement = new Placement { pieceKey = key, x = x, y = y };
-
-        if (Global.isEditMode) Global.levelData.setPieces.Add(placement);
-        Global.modData.Save();
-
-        Player.Place(placement);
-    }
 }
