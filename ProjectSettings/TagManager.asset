@@ -50,3 +50,6 @@ TagManager:
   - name: Border
     uniqueID: 1638772443
     locked: 0
+  - name: New Layer
+    uniqueID: 3843097573
+    locked: 0
