@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
+[DefaultExecutionOrder(-200)]
 public class Global : MonoBehaviour
 {
     public static event Action onModDataChanged;
