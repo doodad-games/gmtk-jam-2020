@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -29,6 +30,7 @@ public class Player : MonoBehaviour
     public static float passedTime => playing ? Time.time - _i._playTime : 0;
     public static float sequenceTotalTime => Global.levelData.movementSequence.Count * TIME_PER_MOVEMENT;
     public static bool outOfTime => passedTime > sequenceTotalTime;
+    public static bool isVictory => _i._startPoints.All(_ => _.finished);
 
     static Player _i;
 
@@ -39,6 +41,21 @@ public class Player : MonoBehaviour
         { 2, new Movement { dir = new Vector2(-1f, 1), buttonRotation = 135 } },
         { 3, new Movement { dir = Vector2.left, buttonRotation = 180 } }
     };
+
+    public static void Place(Placement placement) 
+    {
+        var piece = GameConfig.pieces[placement.pieceKey];
+
+        GameObject.Instantiate(
+            piece.objs.PickRandom(),
+            new Vector3(placement.x, placement.y, 0f), Quaternion.identity
+        )
+            .GetComponent<Piece>()
+            .Init(placement, true);
+    }
+
+    public static void RegisterStartPoint(StartPoint sp) => _i._startPoints.Add(sp);
+    public static void DeregisterStartPoint(StartPoint sp) => _i._startPoints.Remove(sp);
 
 #pragma warning disable CS0649
     [SerializeField] GameObject[] _editorSpecific;
@@ -55,6 +72,8 @@ public class Player : MonoBehaviour
     float _playTime;
     int _curSequenceId;
     Movement _curMovement;
+
+    HashSet<StartPoint> _startPoints = new HashSet<StartPoint>();
 
     void Awake() => Time.timeScale = 0;
 
@@ -146,8 +165,10 @@ public class Player : MonoBehaviour
         else
         {
             Time.timeScale = 1;
+
             _playTime = Time.time;
             _curSequenceId = -1;
+            SoundController.Play("start");
 
             if (Global.isEditMode)
             {
@@ -160,7 +181,7 @@ public class Player : MonoBehaviour
     void DoPlacements()
     {
         foreach (var placement in Global.levelData.setPieces)
-            placement.Place(true);
+            Place(placement);
     }
 
     void InstantiateMovement(int dir)

@@ -18,6 +18,6 @@ public class PieceData : ScriptableObject
         if (Global.isEditMode) Global.levelData.setPieces.Add(placement);
         Global.modData.Save();
 
-        placement.Place(Global.isEditMode);
+        Player.Place(placement);
     }
 }
