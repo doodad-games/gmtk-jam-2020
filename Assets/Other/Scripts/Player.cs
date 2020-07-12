@@ -127,7 +127,7 @@ public class Player : MonoBehaviour
 
 #pragma warning disable CS0649
     [SerializeField] GameObject[] _editorSpecific;
-    [SerializeField] GameObject[] _playModeSpecific;
+    [SerializeField] GameObject[] _nonEditorSpecific;
     [SerializeField] Transform[] _movementContainers;
     [SerializeField] ScrollRect _sequenceScrollView;
     [SerializeField] RectTransform[] _liveSequencersToOffset;
@@ -166,7 +166,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        var toEnable = Global.isEditMode ? _editorSpecific : _playModeSpecific;
+        var toEnable = Global.isEditMode ? _editorSpecific : _nonEditorSpecific;
         foreach (var obj in toEnable) obj.SetActive(true);
 
         DoPiecePlacements();
@@ -256,9 +256,6 @@ public class Player : MonoBehaviour
             {
                 _editSequencer.SetActive(true);
                 _testSequencer.SetActive(false);
-
-                _editPuzzlePieces.SetActive(true);
-                _playPuzzlePieces.SetActive(false);
             }
 
             DoPiecePlacements();
@@ -272,13 +269,10 @@ public class Player : MonoBehaviour
             _playTime = Time.time;
             _curSequenceId = -1;
 
-            if (Global.isEditMode)
+            if (!isPlayMode)
             {
                 _editSequencer.SetActive(false);
                 _testSequencer.SetActive(true);
-
-                _editPuzzlePieces.SetActive(false);
-                _playPuzzlePieces.SetActive(true);
             }
         }
     }
@@ -294,6 +288,7 @@ public class Player : MonoBehaviour
 
     public void ToggleTestMode()
     {
+        selectedPiece = null;
         if (rolling) ToggleStartStop();
 
         onShouldClear?.Invoke();

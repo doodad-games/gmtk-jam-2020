@@ -5443,7 +5443,7 @@ MonoBehaviour:
   - {fileID: 918340923227445765}
   - {fileID: 4327924773715342517}
   - {fileID: 5111842541688273169}
-  _playModeSpecific:
+  _nonEditorSpecific:
   - {fileID: 7079798917186452901}
   - {fileID: 4033101334311996156}
   - {fileID: 3483004460464827995}
@@ -5471,8 +5471,6 @@ MonoBehaviour:
   - {fileID: 3705237994135843261}
   - {fileID: 5111842541688273169}
   _backToEditModButton: {fileID: 4002662662597550760}
-  _editModeRightPanel: {fileID: 2869070285871875103}
-  _testModeRightPanel: {fileID: 1080165083898623278}
 --- !u!114 &4751832189710645424
 MonoBehaviour:
   m_ObjectHideFlags: 0
