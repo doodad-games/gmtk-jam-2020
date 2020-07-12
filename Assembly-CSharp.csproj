@@ -43,6 +43,7 @@
      <Compile Include="Assets\Other\Scripts\MainCamera.cs" />
      <Compile Include="Assets\Other\Scripts\ModData.cs" />
      <Compile Include="Assets\Other\Scripts\Navigation.cs" />
+     <Compile Include="Assets\Other\Scripts\PanLoop.cs" />
      <Compile Include="Assets\Other\Scripts\Piece.cs" />
      <Compile Include="Assets\Other\Scripts\PieceData.cs" />
      <Compile Include="Assets\Other\Scripts\PiecePlacer.cs" />
