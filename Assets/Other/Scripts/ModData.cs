@@ -31,6 +31,8 @@ public static class AvailableMods
     
     static void GetModIOMods()
     {
+        modIOMods = new ModData[] {};
+
         var idPairs = new List<ModfileIdPair>();
         foreach (var kvp in ModManager.IterateInstalledMods(null)) idPairs.Add(kvp.Key);
 
