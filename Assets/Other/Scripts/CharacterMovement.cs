@@ -5,12 +5,16 @@ public class CharacterMovement : MonoBehaviour
 #pragma warning disable CS0649
     [SerializeField] float _speed;
     [SerializeField] float _jumpStrength;
-    [SerializeField] Animator _animator;
 #pragma warning restore CS0649
 
+    Character _char;
     Rigidbody2D _rb;
 
-    void Awake() => _rb = GetComponent<Rigidbody2D>();
+    void Awake()
+    {
+        _char = GetComponent<Character>();
+        _rb = GetComponent<Rigidbody2D>();
+    }
 
     void OnEnable() => Player.onNewMovementStarted += HandleNewMovement;
 
@@ -23,8 +27,8 @@ public class CharacterMovement : MonoBehaviour
             _rb.AddForce(new Vector2(x, 0));
         }
 
-        _animator.SetFloat("VelocityX", _rb.velocity.x);
-        _animator.SetFloat("VelocityY", _rb.velocity.y);
+        _char.anim.SetFloat("VelocityX", _rb.velocity.x);
+        _char.anim.SetFloat("VelocityY", _rb.velocity.y);
 
         transform.localScale = new Vector3(Mathf.Sign(_rb.velocity.x), 1f, 1f);
     }
@@ -38,7 +42,7 @@ public class CharacterMovement : MonoBehaviour
         {
             _rb.AddForce(new Vector2(0, mv.dir.y * _jumpStrength));
         
-            _animator.SetTrigger("Jump");
+            _char.anim.SetTrigger("Jump");
         }
     }
 }

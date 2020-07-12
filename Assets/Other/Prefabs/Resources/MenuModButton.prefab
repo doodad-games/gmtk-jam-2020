@@ -184,6 +184,7 @@ GameObject:
   - component: {fileID: 8561795306798214349}
   - component: {fileID: 7803683204229554421}
   - component: {fileID: 1768957733716312369}
+  - component: {fileID: 5312120615651998595}
   m_Layer: 5
   m_Name: MenuModButton
   m_TagString: Untagged
@@ -340,3 +341,15 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5312120615651998595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8181838951690248644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61bfbf496d781014e967ea7ba6f7ba05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

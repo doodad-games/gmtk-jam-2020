@@ -30,6 +30,8 @@ public class PlayerInputController : MonoBehaviour
 
                 if (hitPiece != null) hitPiece.Clicked();
                 else onGameWorldClicked?.Invoke();
+
+                SoundController.Play("uiClick");
             }
         }
     }

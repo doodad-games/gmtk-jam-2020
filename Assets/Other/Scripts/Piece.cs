@@ -16,13 +16,13 @@ public class Piece : MonoBehaviour
     void OnEnable()
     {
         Player.onSelectedPieceChanged += Refresh;
-        Player.onStartStopped += HandleStartStopped;
+        Player.onPreStartStopped += HandleStartStopped;
     }
 
     void OnDisable()
     {
         Player.onSelectedPieceChanged -= Refresh;
-        Player.onStartStopped -= HandleStartStopped;
+        Player.onPreStartStopped -= HandleStartStopped;
     }
 
     public void Init(Placement placement, bool isSetPiece)
