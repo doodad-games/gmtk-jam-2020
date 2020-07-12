@@ -6,6 +6,7 @@ public class GameConfig : ScriptableObject
 {
     public static IReadOnlyDictionary<string, SceneConfig> scenes => _i._sceneDict;
     public static IReadOnlyDictionary<string, PieceData> pieces => _i._piecesDict;
+    public static ModData officialMod => _i._officialMod;
 
     static GameConfig __i;
     static GameConfig _i
@@ -29,6 +30,7 @@ public class GameConfig : ScriptableObject
 
     Dictionary<string, SceneConfig> _sceneDict;
     Dictionary<string, PieceData> _piecesDict;
+    ModData _officialMod;
 
     void SetUp()
     {
@@ -39,5 +41,9 @@ public class GameConfig : ScriptableObject
         _piecesDict = new Dictionary<string, PieceData>();
         foreach (var piece in _pieces)
             _piecesDict[piece.key] = piece;
+        
+        _officialMod = JsonUtility.FromJson<ModData>(
+            Resources.Load<TextAsset>("official-mod").text
+        );
     }
 }

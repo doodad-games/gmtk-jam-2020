@@ -144,6 +144,8 @@ public class Editor : MonoBehaviour
         _summary.onValueChanged.RemoveListener(ValuesChanged);
     }
 
+    public void SavePressed() => Save();
+
     public void Upload()
     {
         if (_uploadInProgress) return;

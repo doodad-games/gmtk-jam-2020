@@ -20,6 +20,8 @@ public class Menu : MonoBehaviour
 
     void OnEnable()
     {
+        if (Global.modData == null) Global.modData = GameConfig.officialMod;
+
         _i = this;
         AvailableMods.Refresh();
         UpdateModLists();
@@ -37,6 +39,8 @@ public class Menu : MonoBehaviour
         AvailableMods.onUpdated -= UpdateLevelList;
         Global.onModDataChanged -= UpdateLevelList;
     }
+
+    public void OfficialLevels() => Global.modData = GameConfig.officialMod;
 
     void UpdateModLists()
     {
