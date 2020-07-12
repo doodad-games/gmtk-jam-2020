@@ -40,6 +40,8 @@ public static class AvailableMods
             idPairs.Select(_ => _.modId),
             (profiles) => {
                 modIOMods = profiles
+                    .GroupBy(_ => _.id)
+                    .Select(_ => _.First())
                     .Select(_ => {
                         try
                         {

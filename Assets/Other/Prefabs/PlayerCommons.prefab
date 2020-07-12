@@ -4703,7 +4703,10 @@ MonoBehaviour:
   - {fileID: 7079798917186452901}
   - {fileID: 4033101334311996156}
   - {fileID: 3483004460464827995}
-  _movementContainers: []
+  _movementContainers:
+  - {fileID: 2366036377898299878}
+  - {fileID: 1767593292982379914}
+  - {fileID: 338771137530266169}
   _sequenceScrollView: {fileID: 2231071536277547764}
   _editSequencer: {fileID: 6551907385796093099}
   _testSequencer: {fileID: 4844004819185995409}
