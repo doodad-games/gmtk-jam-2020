@@ -13,9 +13,17 @@ public class Piece : MonoBehaviour
     PieceData _piece;
     bool _isSetPiece;
 
-    void OnEnable() => Player.onSelectedPieceChanged += Refresh;
+    void OnEnable()
+    {
+        Player.onSelectedPieceChanged += Refresh;
+        Player.onStartStopped += HandleStartStopped;
+    }
 
-    void OnDisable() => Player.onSelectedPieceChanged -= Refresh;
+    void OnDisable()
+    {
+        Player.onSelectedPieceChanged -= Refresh;
+        Player.onStartStopped -= HandleStartStopped;
+    }
 
     public void Init(Placement placement, bool isSetPiece)
     {
@@ -37,4 +45,9 @@ public class Piece : MonoBehaviour
 
     void Refresh() =>
         _ghost.gameObject.SetActive(_canBeDeleted);
+    
+    void HandleStartStopped()
+    {
+        if (!Player.playing) Destroy(gameObject);
+    }
 }
