@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,26 +12,30 @@ public class Player : MonoBehaviour
     const float SEQUENCER_UI_DIST_PER_SEC = 60f;
 
     public static event Action onSelectedPieceChanged;
-    public static event Action onStartStopped;
+    public static event Action onPreStartStopped;
+    public static event Action onPostStartStopped;
     public static event Action onNewMovementStarted;
+    public static event Action onVictoryChanged;
 
     public static PieceData selectedPiece
     {
-        get => _i._selected;
+        get => _i._selectedPiece;
         set
         {
-            _i._selected = value;
+            _i._selectedPiece = value;
             onSelectedPieceChanged?.Invoke();
         }
     }
 
     public static bool deleting => selectedPiece?.isFakeDeletePiece ?? false;
-    public static bool playing => Time.timeScale == 1;
+    public static bool playing => _i._playing;
     public static Movement curMovement => _i._curMovement;
     public static float passedTime => playing ? Time.time - _i._playTime : 0;
     public static float sequenceTotalTime => Global.levelData.movementSequence.Count * TIME_PER_MOVEMENT;
     public static bool outOfTime => passedTime > sequenceTotalTime;
-    public static bool isVictory => _i._startPoints.All(_ => _.finished);
+    public static bool isGameOver => isLose || isVictory;
+    public static bool isLose => _i._startPoints.Any(_ => _.died);
+    public static bool isVictory => !isLose && _i._startPoints.All(_ => _.finished);
 
     static Player _i;
 
@@ -54,8 +59,45 @@ public class Player : MonoBehaviour
             .Init(placement, true);
     }
 
-    public static void RegisterStartPoint(StartPoint sp) => _i._startPoints.Add(sp);
-    public static void DeregisterStartPoint(StartPoint sp) => _i._startPoints.Remove(sp);
+    public static void RegisterStartPoint(StartPoint sp)
+    {
+        _i._startPoints.Add(sp);
+        HandleVictoryChanges();
+    }
+    public static void DeregisterStartPoint(StartPoint sp)
+    {
+        if (_i == null) return;
+        _i._startPoints.Remove(sp);
+        HandleVictoryChanges();
+    }
+
+    static void HandleVictoryChanges()
+    {
+        if (!playing)
+        {
+            _i._winLosePopup.SetActive(false);
+            return;
+        }
+
+        if (isGameOver)
+        {
+            _i._winLosePopup.SetActive(true);
+
+            if (isVictory)
+            {
+                _i._winLoseText.text = "Victory!";
+                SoundController.Play("win");
+            }
+            else
+            {
+                _i._winLoseText.text = "Lose :(";
+                SoundController.Play("lose");
+            }
+        }
+        else _i._winLosePopup.SetActive(false);
+
+        onVictoryChanged?.Invoke();
+    }
 
 #pragma warning disable CS0649
     [SerializeField] GameObject[] _editorSpecific;
@@ -65,10 +107,16 @@ public class Player : MonoBehaviour
     [SerializeField] RectTransform[] _liveSequencersToOffset;
     [SerializeField] GameObject _editSequencer;
     [SerializeField] GameObject _testSequencer;
+    [SerializeField] GameObject _editPuzzlePieces;
+    [SerializeField] GameObject _playPuzzlePieces;
+    [SerializeField] GameObject _winLosePopup;
+    [SerializeField] TextMeshProUGUI _winLoseText;
+    [SerializeField] GameObject _nextLevelButton;
 #pragma warning restore CS0649
 
-    PieceData _selected;
+    PieceData _selectedPiece;
     int _justAddedToScrollView;
+    bool _playing;
     float _playTime;
     int _curSequenceId;
     Movement _curMovement;
@@ -77,7 +125,12 @@ public class Player : MonoBehaviour
 
     void Awake() => Time.timeScale = 0;
 
-    void OnEnable() => _i = this;
+    void OnEnable()
+    {
+        _i = this;
+
+        StartPoint.onAStartPointFinished += HandleVictoryChanges;
+    }
 
     void Start()
     {
@@ -89,6 +142,9 @@ public class Player : MonoBehaviour
         foreach (var dir in Global.levelData.movementSequence)
             InstantiateMovement(dir);
         _justAddedToScrollView = 1;
+
+        if (Global.modData.levels.IndexOf(Global.levelData) == Global.modData.levels.Count - 1)
+            _nextLevelButton.SetActive(false);
     }
 
     void Update()
@@ -119,7 +175,12 @@ public class Player : MonoBehaviour
         }
     }
 
-    void OnDisable() => _i = null;
+    void OnDisable()
+    {
+        _i = null;
+
+        StartPoint.onAStartPointFinished -= HandleVictoryChanges;
+    }
 
     public void AddMovement(int dir)
     {
@@ -144,19 +205,25 @@ public class Player : MonoBehaviour
 
     public void ToggleStartStop() 
     {
-        var wasPlaying = playing;
-        Time.timeScale = playing ? 0 : 1;
+        selectedPiece = null;
 
-        onStartStopped?.Invoke();
+        var wasPlaying = _playing;
+        _playing = !wasPlaying;
+
+        onPreStartStopped?.Invoke();
 
         if (wasPlaying)
         {
             Time.timeScale = 0;
+            _playing = false;
 
             if (Global.isEditMode)
             {
                 _editSequencer.SetActive(true);
                 _testSequencer.SetActive(false);
+
+                _editPuzzlePieces.SetActive(true);
+                _playPuzzlePieces.SetActive(false);
             }
 
             DoPlacements();
@@ -166,17 +233,26 @@ public class Player : MonoBehaviour
         {
             Time.timeScale = 1;
 
+            _playing = true;
             _playTime = Time.time;
             _curSequenceId = -1;
-            SoundController.Play("start");
 
             if (Global.isEditMode)
             {
                 _editSequencer.SetActive(false);
                 _testSequencer.SetActive(true);
+
+                _editPuzzlePieces.SetActive(false);
+                _playPuzzlePieces.SetActive(true);
             }
         }
+
+        onPostStartStopped?.Invoke();
     }
+
+    public void PlayNextLevel() => Navigation.GoToPlayLevel(
+        Global.modData.levels[Global.modData.levels.IndexOf(Global.levelData) + 1]
+    );
 
     void DoPlacements()
     {

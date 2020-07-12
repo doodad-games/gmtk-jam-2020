@@ -241,6 +241,7 @@ GameObject:
   - component: {fileID: 6450790789402512226}
   - component: {fileID: 4834627345806149466}
   - component: {fileID: 4024198110249346718}
+  - component: {fileID: 4087573549524875151}
   m_Layer: 5
   m_Name: EditorSelectExistingLocalMod
   m_TagString: Untagged
@@ -400,6 +401,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4087573549524875151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6836447049833055851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61bfbf496d781014e967ea7ba6f7ba05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5375665848748692517
 PrefabInstance:
   m_ObjectHideFlags: 0

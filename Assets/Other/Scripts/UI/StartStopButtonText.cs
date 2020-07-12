@@ -9,10 +9,10 @@ public class StartStopButtonText : MonoBehaviour
 
     void OnEnable()
     {
-        Player.onStartStopped += Refresh;
+        Player.onPreStartStopped += Refresh;
         Refresh();
     }
-    void OnDisable() => Player.onStartStopped += Refresh;
+    void OnDisable() => Player.onPreStartStopped += Refresh;
 
     void Refresh() => _text.text = Player.playing ? "Stop" : "Play";
 }

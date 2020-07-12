@@ -36,7 +36,9 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Other\Scripts\Character.cs" />
      <Compile Include="Assets\Other\Scripts\CharacterMovement.cs" />
+     <Compile Include="Assets\Other\Scripts\FinishPoint.cs" />
      <Compile Include="Assets\Other\Scripts\GameConfig.cs" />
      <Compile Include="Assets\Other\Scripts\Global.cs" />
      <Compile Include="Assets\Other\Scripts\LevelData.cs" />
@@ -54,6 +56,7 @@
      <Compile Include="Assets\Other\Scripts\StartPoint.cs" />
      <Compile Include="Assets\Other\Scripts\TextStyle.cs" />
      <Compile Include="Assets\Other\Scripts\UI\AvailablePieceButton.cs" />
+     <Compile Include="Assets\Other\Scripts\UI\ButtonSounds.cs" />
      <Compile Include="Assets\Other\Scripts\UI\Editor.cs" />
      <Compile Include="Assets\Other\Scripts\UI\EditorLevelRow.cs" />
      <Compile Include="Assets\Other\Scripts\UI\EditorSceneChoice.cs" />
