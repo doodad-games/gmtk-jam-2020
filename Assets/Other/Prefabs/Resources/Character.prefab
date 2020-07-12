@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3225756424435571047}
+  - component: {fileID: 5598418876355527930}
   - component: {fileID: 7893926277217559361}
   - component: {fileID: 8539922874026139927}
   m_Layer: 0
@@ -33,6 +34,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5598418876355527930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4990361150575136523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c08f6ec99ee34234c9211f2d190fcd0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 5
+  _jumpStrength: 250
+  _animator: {fileID: 3359068086487058230}
 --- !u!50 &7893926277217559361
 Rigidbody2D:
   serializedVersion: 4
@@ -53,7 +69,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &8539922874026139927
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -262,6 +278,12 @@ PrefabInstance:
 --- !u!4 &8922850760711163164 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7003251455020092122, guid: bd0023ecb95e60247aa3161c79bb34cf,
+    type: 3}
+  m_PrefabInstance: {fileID: 1937912789657356230}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &3359068086487058230 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3781079520893665520, guid: bd0023ecb95e60247aa3161c79bb34cf,
     type: 3}
   m_PrefabInstance: {fileID: 1937912789657356230}
   m_PrefabAsset: {fileID: 0}

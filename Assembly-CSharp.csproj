@@ -36,6 +36,7 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Other\Scripts\CharacterMovement.cs" />
      <Compile Include="Assets\Other\Scripts\GameConfig.cs" />
      <Compile Include="Assets\Other\Scripts\Global.cs" />
      <Compile Include="Assets\Other\Scripts\LevelData.cs" />

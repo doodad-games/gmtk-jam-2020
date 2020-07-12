@@ -4708,6 +4708,9 @@ MonoBehaviour:
   - {fileID: 1767593292982379914}
   - {fileID: 338771137530266169}
   _sequenceScrollView: {fileID: 2231071536277547764}
+  _liveSequencersToOffset:
+  - {fileID: 646070690498263000}
+  - {fileID: 8474900222471142761}
   _editSequencer: {fileID: 6551907385796093099}
   _testSequencer: {fileID: 4844004819185995409}
 --- !u!114 &4751832189710645424

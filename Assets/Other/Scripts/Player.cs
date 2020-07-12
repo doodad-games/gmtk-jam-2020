@@ -6,8 +6,12 @@ using UnityEngine.UI;
 [DefaultExecutionOrder(-10)]
 public class Player : MonoBehaviour
 {
+    const float TIME_PER_MOVEMENT = 1f;
+    const float SEQUENCER_UI_DIST_PER_SEC = 60f;
+
     public static event Action onSelectedPieceChanged;
     public static event Action onStartStopped;
+    public static event Action onNewMovementStarted;
 
     public static PieceData selectedPiece
     {
@@ -21,14 +25,18 @@ public class Player : MonoBehaviour
 
     public static bool deleting => selectedPiece?.isFakeDeletePiece ?? false;
     public static bool playing => Time.timeScale == 1;
+    public static Movement curMovement => _i._curMovement;
+    public static float passedTime => playing ? Time.time - _i._playTime : 0;
+    public static float sequenceTotalTime => Global.levelData.movementSequence.Count * TIME_PER_MOVEMENT;
+    public static bool outOfTime => passedTime > sequenceTotalTime;
 
     static Player _i;
 
     static Dictionary<int, Movement> _movements = new Dictionary<int, Movement>
     {
         { 0, new Movement { dir = Vector2.right, buttonRotation = 0 } },
-        { 1, new Movement { dir = new Vector2(1, 1), buttonRotation = 45 } },
-        { 2, new Movement { dir = new Vector2(-1, 1), buttonRotation = 135 } },
+        { 1, new Movement { dir = new Vector2(1f, 1), buttonRotation = 45 } },
+        { 2, new Movement { dir = new Vector2(-1f, 1), buttonRotation = 135 } },
         { 3, new Movement { dir = Vector2.left, buttonRotation = 180 } }
     };
 
@@ -37,12 +45,16 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject[] _playModeSpecific;
     [SerializeField] Transform[] _movementContainers;
     [SerializeField] ScrollRect _sequenceScrollView;
+    [SerializeField] RectTransform[] _liveSequencersToOffset;
     [SerializeField] GameObject _editSequencer;
     [SerializeField] GameObject _testSequencer;
 #pragma warning restore CS0649
 
     PieceData _selected;
     int _justAddedToScrollView;
+    float _playTime;
+    int _curSequenceId;
+    Movement _curMovement;
 
     void Awake() => Time.timeScale = 0;
 
@@ -69,6 +81,22 @@ public class Player : MonoBehaviour
                 _justAddedToScrollView = 0;
                 _sequenceScrollView.horizontalNormalizedPosition = 1;
             } else ++_justAddedToScrollView;
+        }
+
+        if (playing)
+        {
+            UpdateLiveSequencers();
+
+            var newSequenceId = Mathf.FloorToInt(passedTime / TIME_PER_MOVEMENT);
+            if (newSequenceId != _curSequenceId)
+            {
+                _curSequenceId = newSequenceId;
+                _curMovement = _curSequenceId < Global.levelData.movementSequence.Count
+                    ? _movements[Global.levelData.movementSequence[_curSequenceId]]
+                    : null;
+                
+                if (_curMovement != null) onNewMovementStarted?.Invoke();
+            }
         }
     }
 
@@ -113,10 +141,13 @@ public class Player : MonoBehaviour
             }
 
             DoPlacements();
+            UpdateLiveSequencers();
         }
         else
         {
             Time.timeScale = 1;
+            _playTime = Time.time;
+            _curSequenceId = -1;
 
             if (Global.isEditMode)
             {
@@ -140,10 +171,21 @@ public class Player : MonoBehaviour
             Instantiate(Resources.Load<GameObject>("MovementIndicator"), container)
                 .GetComponent<MovementIndicator>().Init(movement);
     }
+
+    void UpdateLiveSequencers()
+    {
+        var seqOffset = -Mathf.Min(sequenceTotalTime, passedTime) * SEQUENCER_UI_DIST_PER_SEC;
+        foreach (var tfm in _liveSequencersToOffset)
+            tfm.SetInsetAndSizeFromParentEdge(
+                RectTransform.Edge.Left,
+                seqOffset,
+                tfm.sizeDelta.x
+            );
+    }
 }
 
 [Serializable]
-public struct Movement
+public class Movement
 {
     public Vector2 dir;
     public float buttonRotation;
