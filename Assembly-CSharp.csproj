@@ -59,6 +59,7 @@
      <Compile Include="Assets\Other\Scripts\UI\ButtonSounds.cs" />
      <Compile Include="Assets\Other\Scripts\UI\Editor.cs" />
      <Compile Include="Assets\Other\Scripts\UI\EditorLevelRow.cs" />
+     <Compile Include="Assets\Other\Scripts\UI\EditorPuzzlePiece.cs" />
      <Compile Include="Assets\Other\Scripts\UI\EditorSceneChoice.cs" />
      <Compile Include="Assets\Other\Scripts\UI\EditorSelect.cs" />
      <Compile Include="Assets\Other\Scripts\UI\EditorSelectExistingMod.cs" />
@@ -688,6 +689,12 @@
     </Reference>
     <Reference Include="com.unity.quicksearch">
         <HintPath>C:/Users/mail/git/gmtk-jam-2020/Library/ScriptAssemblies/com.unity.quicksearch.dll</HintPath>
+    </Reference>
+    <Reference Include="BilalAkil.MyLibrary.Editor">
+        <HintPath>C:/Users/mail/git/gmtk-jam-2020/Library/ScriptAssemblies/BilalAkil.MyLibrary.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="BilalAkil.MyLibrary.Runtime">
+        <HintPath>C:/Users/mail/git/gmtk-jam-2020/Library/ScriptAssemblies/BilalAkil.MyLibrary.Runtime.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

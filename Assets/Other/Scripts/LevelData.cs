@@ -17,10 +17,27 @@ public class LevelData
         Global.modData.levels.Add(this);
         Global.modData.Save();
     }
+
+    public int GetNumAvailablePieces(string pieceKey) =>
+        availablePieces.Find(_ => _.pieceKey == pieceKey).numAvailable;
+    
+    public void SetNumAvailablePieces(string pieceKey, int num)
+    {
+        var piece = availablePieces.Find(_ => _.pieceKey == pieceKey);
+        if (piece == null)
+        {
+            piece = new AvailablePieces { pieceKey = pieceKey };
+            availablePieces.Add(piece);
+        }
+
+        piece.numAvailable = num;
+
+        Global.modData.Save();
+    }
 }
 
 [Serializable]
-public struct AvailablePieces
+public class AvailablePieces
 {
     public string pieceKey;
     public int numAvailable;
