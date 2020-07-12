@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: GameConfig
   m_EditorClassIdentifier: 
   _scenes:
-  - {fileID: 11400000, guid: a8d76121b7b81ce42aadb2d09404997e, type: 2}
   - {fileID: 11400000, guid: 4a1b0c7315cbb524fbf0bd36c7219a5e, type: 2}
   - {fileID: 11400000, guid: 998c40dc9aa114d488643d4f587e6164, type: 2}
   - {fileID: 11400000, guid: 6890d3710d227ec42ac63a7e5ceb2e01, type: 2}

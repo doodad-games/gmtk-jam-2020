@@ -1,0 +1,96 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ca2b8b6f4a918b40b663fbf707b6b87, type: 3}
+  m_Name: TextStyleConfig
+  m_EditorClassIdentifier: 
+  _fonts:
+  - key: main
+    asset: {fileID: 11400000, guid: ccdc8f0eef855bc46b037c489936cd01, type: 2}
+    material: {fileID: 2100000, guid: f06bcb909e2e14d45adef0ecd42e9668, type: 2}
+  - key: button
+    asset: {fileID: 11400000, guid: ccdc8f0eef855bc46b037c489936cd01, type: 2}
+    material: {fileID: 3804398590958671920, guid: ccdc8f0eef855bc46b037c489936cd01,
+      type: 2}
+  - key: body
+    asset: {fileID: 11400000, guid: d3790897ebacbed41a13c9d1caa7fade, type: 2}
+    material: {fileID: 2100000, guid: 8aa61cfeee2ae2445a06fd789b659940, type: 2}
+  - key: bodyPlain
+    asset: {fileID: 11400000, guid: d3790897ebacbed41a13c9d1caa7fade, type: 2}
+    material: {fileID: -1973567907938055210, guid: d3790897ebacbed41a13c9d1caa7fade,
+      type: 2}
+  _styles:
+  - key: label
+    fontKey: main
+    skipColour: 0
+    colour:
+      serializedVersion: 2
+      rgba: 4294967295
+    bold: 0
+    skipSize: 0
+    size: 40
+    fontAsset: {fileID: 0}
+    fontMaterial: {fileID: 0}
+  - key: title
+    fontKey: main
+    skipColour: 0
+    colour:
+      serializedVersion: 2
+      rgba: 4294967295
+    bold: 0
+    skipSize: 0
+    size: 64
+    fontAsset: {fileID: 0}
+    fontMaterial: {fileID: 0}
+  - key: button
+    fontKey: button
+    skipColour: 0
+    colour:
+      serializedVersion: 2
+      rgba: 4281216560
+    bold: 0
+    skipSize: 0
+    size: 32
+    fontAsset: {fileID: 0}
+    fontMaterial: {fileID: 0}
+  - key: labelSmall
+    fontKey: body
+    skipColour: 0
+    colour:
+      serializedVersion: 2
+      rgba: 4294967295
+    bold: 0
+    skipSize: 0
+    size: 32
+    fontAsset: {fileID: 0}
+    fontMaterial: {fileID: 0}
+  - key: levelNum
+    fontKey: main
+    skipColour: 0
+    colour:
+      serializedVersion: 2
+      rgba: 4294967295
+    bold: 0
+    skipSize: 0
+    size: 64
+    fontAsset: {fileID: 0}
+    fontMaterial: {fileID: 0}
+  - key: bodyPlainFont
+    fontKey: bodyPlain
+    skipColour: 1
+    colour:
+      serializedVersion: 2
+      rgba: 4294967295
+    bold: 0
+    skipSize: 1
+    size: 32
+    fontAsset: {fileID: 0}
+    fontMaterial: {fileID: 0}

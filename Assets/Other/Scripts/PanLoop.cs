@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿// Stolen from Viking Trickshot
+
+using UnityEngine;
 
 /*
 Object to loop should have a plain transform (0 local position/rotation, 1 scale).

@@ -56,6 +56,7 @@
      <Compile Include="Assets\Other\Scripts\SceneConfig.cs" />
      <Compile Include="Assets\Other\Scripts\StartPoint.cs" />
      <Compile Include="Assets\Other\Scripts\TextStyle.cs" />
+     <Compile Include="Assets\Other\Scripts\TextStyleConfig.cs" />
      <Compile Include="Assets\Other\Scripts\UI\AvailablePieceButton.cs" />
      <Compile Include="Assets\Other\Scripts\UI\ButtonSounds.cs" />
      <Compile Include="Assets\Other\Scripts\UI\Editor.cs" />
@@ -74,6 +75,11 @@
      <Compile Include="Assets\Other\Scripts\UI\StartStopButtonText.cs" />
      <Compile Include="Assets\Other\Scripts\UI\TextLevelNum.cs" />
      <Compile Include="Assets\Other\Scripts\UI\TextModName.cs" />
+     <None Include="Assets\Other\Fonts\cabin\FONTLOG.txt" />
+     <None Include="Assets\Other\Fonts\cabin\OFL.txt" />
+     <None Include="Assets\Other\Fonts\stone-age-font\info.txt" />
+     <None Include="Assets\Other\Fonts\stone-age-font\misc\readme.txt" />
+     <None Include="Assets\Other\Fonts\cabin\Readme.txt" />
     <Reference Include="UnityEngine">
         <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.3f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
@@ -653,6 +659,9 @@
     <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
         <HintPath>C:/Users/mail/git/gmtk-jam-2020/Library/ScriptAssemblies/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
     </Reference>
+    <Reference Include="BilalAkil.MyLibrary.Editor">
+        <HintPath>C:/Users/mail/git/gmtk-jam-2020/Library/ScriptAssemblies/BilalAkil.MyLibrary.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Mathematics">
         <HintPath>C:/Users/mail/git/gmtk-jam-2020/Library/ScriptAssemblies/Unity.Mathematics.dll</HintPath>
     </Reference>
@@ -686,17 +695,14 @@
     <Reference Include="Unity.InternalAPIEditorBridge.001">
         <HintPath>C:/Users/mail/git/gmtk-jam-2020/Library/ScriptAssemblies/Unity.InternalAPIEditorBridge.001.dll</HintPath>
     </Reference>
+    <Reference Include="BilalAkil.MyLibrary.Runtime">
+        <HintPath>C:/Users/mail/git/gmtk-jam-2020/Library/ScriptAssemblies/BilalAkil.MyLibrary.Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor.UI">
         <HintPath>C:/Users/mail/git/gmtk-jam-2020/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="com.unity.quicksearch">
         <HintPath>C:/Users/mail/git/gmtk-jam-2020/Library/ScriptAssemblies/com.unity.quicksearch.dll</HintPath>
-    </Reference>
-    <Reference Include="BilalAkil.MyLibrary.Editor">
-        <HintPath>C:/Users/mail/git/gmtk-jam-2020/Library/ScriptAssemblies/BilalAkil.MyLibrary.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="BilalAkil.MyLibrary.Runtime">
-        <HintPath>C:/Users/mail/git/gmtk-jam-2020/Library/ScriptAssemblies/BilalAkil.MyLibrary.Runtime.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
