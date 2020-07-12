@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2b0a0acddd67d8349a1470965010b78c, type: 3}
-  m_Name: StartPoint
+  m_Name: FinishPoint
   m_EditorClassIdentifier: 
   objs:
-  - {fileID: 2787212021105332460, guid: e3307b16ab70b114cbea4aa5aca675c5, type: 3}
+  - {fileID: 7411245078047668373, guid: a357c9cc63fe43c4eb88ba4149c1218f, type: 3}
   isSetPiece: 1
-  thumbnail: {fileID: 21300000, guid: 8042df307abd6094199b0a54187011ac, type: 3}
-  ghost: {fileID: 21300000, guid: ad53c55d827d36e439783e57aaaeb1a4, type: 3}
+  thumbnail: {fileID: 21300000, guid: 6ef3dc03526a2784389b48e04f8502f0, type: 3}
+  ghost: {fileID: 21300000, guid: 68db4be5db4e7494b8d3d9e269b4e1cd, type: 3}

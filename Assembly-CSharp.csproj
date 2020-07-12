@@ -62,6 +62,8 @@
      <Compile Include="Assets\Other\Scripts\UI\MenuModButton.cs" />
      <Compile Include="Assets\Other\Scripts\UI\ModIOCloseButton.cs" />
      <Compile Include="Assets\Other\Scripts\UI\ModIOController.cs" />
+     <Compile Include="Assets\Other\Scripts\UI\MovementIndicator.cs" />
+     <Compile Include="Assets\Other\Scripts\UI\StartStopButtonText.cs" />
      <Compile Include="Assets\Other\Scripts\UI\TextLevelNum.cs" />
      <Compile Include="Assets\Other\Scripts\UI\TextModName.cs" />
     <Reference Include="UnityEngine">

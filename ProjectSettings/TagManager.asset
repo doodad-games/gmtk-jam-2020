@@ -44,12 +44,15 @@ TagManager:
   - name: Creatures
     uniqueID: 2272845909
     locked: 0
+  - name: Pieces
+    uniqueID: 2835024357
+    locked: 0
   - name: Character
     uniqueID: 3787008959
     locked: 0
   - name: Border
     uniqueID: 1638772443
     locked: 0
-  - name: New Layer
+  - name: Ghost
     uniqueID: 3843097573
     locked: 0
