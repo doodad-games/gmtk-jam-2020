@@ -3052,7 +3052,6 @@ MonoBehaviour:
   _localContainer: {fileID: 1036058563}
   _noModIOMods: {fileID: 775002355}
   _modIOContainer: {fileID: 1043108221}
-  _selectedMod: {fileID: 811547165}
   _levelContainer: {fileID: 945720818}
 --- !u!4 &1877399903
 Transform:
