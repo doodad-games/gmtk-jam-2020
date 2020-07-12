@@ -7,7 +7,6 @@ public class PieceData : ScriptableObject
 
     public string key => name;
     public GameObject[] objs;
-    public bool isSetPiece;
     public Sprite thumbnail;
     public Sprite ghost;
 

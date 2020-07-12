@@ -19,18 +19,27 @@ public class LevelData
     }
 
     public int GetNumAvailablePieces(string pieceKey) =>
-        availablePieces.Find(_ => _.pieceKey == pieceKey).numAvailable;
+        availablePieces.Find(_ => _.pieceKey == pieceKey)?.numAvailable ?? 0;
     
     public void SetNumAvailablePieces(string pieceKey, int num)
     {
         var piece = availablePieces.Find(_ => _.pieceKey == pieceKey);
-        if (piece == null)
-        {
-            piece = new AvailablePieces { pieceKey = pieceKey };
-            availablePieces.Add(piece);
-        }
 
-        piece.numAvailable = num;
+        if (num == 0)
+        {
+            if (piece != null) availablePieces.Remove(piece);
+            return;
+        }
+        else
+        {
+            if (piece == null)
+            {
+                piece = new AvailablePieces { pieceKey = pieceKey };
+                availablePieces.Add(piece);
+            }
+
+            piece.numAvailable = num;
+        }
 
         Global.modData.Save();
     }
