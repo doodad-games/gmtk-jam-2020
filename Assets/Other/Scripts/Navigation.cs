@@ -28,4 +28,5 @@ public class Navigation : MonoBehaviour
         SceneManager.LoadScene("Editor");
     }
     public void GoToEditorCurrent() => SceneManager.LoadScene("Editor");
+    public void ExitGame() => Application.Quit();
 }

@@ -51,11 +51,11 @@ MonoBehaviour:
     fontAsset: {fileID: 0}
     fontMaterial: {fileID: 0}
   - key: button
-    fontKey: button
+    fontKey: main
     skipColour: 0
     colour:
       serializedVersion: 2
-      rgba: 4281216560
+      rgba: 4294967295
     bold: 0
     skipSize: 0
     size: 32

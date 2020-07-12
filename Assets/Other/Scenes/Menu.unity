@@ -2927,7 +2927,7 @@ PrefabInstance:
     - target: {fileID: 7301264910198523353, guid: 2df18691334c14fb189cecb04767229f,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GoToEditorSelect
+      value: ExitGame
       objectReference: {fileID: 0}
     - target: {fileID: 7301264910198523353, guid: 2df18691334c14fb189cecb04767229f,
         type: 3}
