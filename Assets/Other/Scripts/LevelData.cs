@@ -8,7 +8,7 @@ public class LevelData
     public string internalNote;
     public List<Placement> setPieces = new List<Placement>();
     public List<AvailablePieces> availablePieces = new List<AvailablePieces>();
-    public int[] movementSequence = {};
+    public List<int> movementSequence = new List<int>();
 
     public LevelData(SceneConfig scene) => sceneKey = scene.sceneName;
 
