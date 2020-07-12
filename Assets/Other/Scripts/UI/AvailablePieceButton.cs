@@ -16,13 +16,17 @@ public class AvailablePieceButton : MonoBehaviour
 
     void OnEnable()
     {
-        if (!_hasStarted) return;
-        Player.onSelectedPieceChanged += HandleSelectedPieceChanged;
-        Refresh();
+        Player.onPlaced += HandlePlacement;
+        Player.onUnplaced += HandleUnplacement;
+
+        TryPostStart();
     }
 
     void OnDisable() 
     {
+        Player.onPlaced -= HandlePlacement;
+        Player.onUnplaced -= HandleUnplacement;
+
         if (!_hasStarted) return;
         Player.onSelectedPieceChanged -= HandleSelectedPieceChanged;
     }
@@ -32,13 +36,24 @@ public class AvailablePieceButton : MonoBehaviour
         _thumb.sprite = piece.thumbnail;
 
         _hasStarted = true;
-        OnEnable();
+        TryPostStart();
     }
     
     public void Pressed()
     {
         if (Player.selectedPiece == piece) Player.selectedPiece = null;
         else Player.selectedPiece = piece;
+    }
+
+    // For overriding...
+    protected virtual void HandlePlacement(Placement placement) {}
+    protected virtual void HandleUnplacement(Placement placement) {}
+
+    void TryPostStart()
+    {
+        if (!_hasStarted) return;
+        Player.onSelectedPieceChanged += HandleSelectedPieceChanged;
+        Refresh();
     }
 
     void HandleSelectedPieceChanged()
