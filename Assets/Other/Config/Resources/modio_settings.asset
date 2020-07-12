@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: modio_settings
   m_EditorClassIdentifier: 
   m_data:
-    apiURL: https://api.test.mod.io/v1
-    gameId: 535
-    gameAPIKey: f137893bbc7139576efd5b9513fd835f
+    apiURL: https://api.mod.io/v1
+    gameId: 685
+    gameAPIKey: 72f3cd2e6bb6faf69c2f9034904d40f3
     installationDirectory: $PERSISTENT_DATA_PATH$/modio-$GAME_ID$/_installedMods
     cacheDirectory: $PERSISTENT_DATA_PATH$/modio-$GAME_ID$
     logAllRequests: 0

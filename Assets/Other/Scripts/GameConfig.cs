@@ -1,6 +1,16 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+/**
+mod.io test:
+id = 535
+api key = f137893bbc7139576efd5b9513fd835f
+
+mod.io prod:
+id = 685
+api key = 72f3cd2e6bb6faf69c2f9034904d40f3
+*/
+
 [CreateAssetMenu(menuName = "Game/GameConfig", fileName = "GameConfig")]
 public class GameConfig : ScriptableObject
 {

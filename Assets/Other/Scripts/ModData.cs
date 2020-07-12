@@ -9,6 +9,12 @@ public static class AvailableMods
 {
     public static event Action onUpdated;
 
+    static AvailableMods()
+    {
+        localMods = new ModData[] {};
+        modIOMods = new ModData[] {};
+    }
+
     public static void Refresh()
     {
         localMods = GetLocalMods();
@@ -31,8 +37,6 @@ public static class AvailableMods
     
     static void GetModIOMods()
     {
-        modIOMods = new ModData[] {};
-
         var idPairs = new List<ModfileIdPair>();
         foreach (var kvp in ModManager.IterateInstalledMods(null)) idPairs.Add(kvp.Key);
 
@@ -68,7 +72,7 @@ public static class AvailableMods
 public class ModData
 {
     public const string DATA_FILE_NAME = "data.json";
-    public const string LOGO_FILE_NAME = "example_logo.png";
+    public const string LOGO_FILE_NAME = "preview.png";
 
     public static string localModPath =>
         Path.Combine(Application.persistentDataPath, "localMods");
@@ -226,6 +230,8 @@ public class ModData
         var rootDir = localModPath;
         var dir = Path.Combine(rootDir, id);
         Directory.Delete(dir, true);
+
+        if (Global.modData != null && Global.modData.id == id) Global.modData = null;
     }
 
     public enum Source
