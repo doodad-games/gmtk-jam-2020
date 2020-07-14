@@ -44,6 +44,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Pit
+    uniqueID: 3954098895
+    locked: 0
   - name: Pieces
     uniqueID: 2835024357
     locked: 0
