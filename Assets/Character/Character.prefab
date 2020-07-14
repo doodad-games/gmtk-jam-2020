@@ -1233,9 +1233,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -507958337
+  m_SortingLayer: 3
+  m_SortingOrder: -7
   m_Sprite: {fileID: 21300000, guid: dcc41ea6fa795aa479bbf8dbf7a765ad, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2126,8 +2126,8 @@ MonoBehaviour:
   - {fileID: 2284835028120396987}
   - {fileID: 7533259847954627581}
   m_Bounds:
-    m_Center: {x: -0.5940074, y: 0.00925988, z: 0}
-    m_Extent: {x: 0.49533144, y: 0.65452003, z: 0}
+    m_Center: {x: -0.7046961, y: 0.24599844, z: 0}
+    m_Extent: {x: 0.68287617, y: 0.4821992, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &7003251453686742127
@@ -2237,8 +2237,8 @@ MonoBehaviour:
   - {fileID: 8254951623767370867}
   - {fileID: 1109833095257824634}
   m_Bounds:
-    m_Center: {x: -0.11741611, y: -0.8375138, z: 0}
-    m_Extent: {x: 0.3199317, y: 0.6491076, z: 0}
+    m_Center: {x: 0.110124916, y: -0.86213577, z: 0}
+    m_Extent: {x: 0.32698706, y: 0.6907277, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &7003251453928330471
@@ -2431,8 +2431,8 @@ MonoBehaviour:
   - {fileID: 2194447565539342688}
   - {fileID: 7348931214258678182}
   m_Bounds:
-    m_Center: {x: -0.118474126, y: 0.21100885, z: 0}
-    m_Extent: {x: 0.3995337, y: 0.6327706, z: 0}
+    m_Center: {x: -0.26045144, y: 0.2839423, z: 0}
+    m_Extent: {x: 0.32776874, y: 0.64479536, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &7003251454121499411
@@ -2535,8 +2535,8 @@ MonoBehaviour:
   - {fileID: 8677335470595950724}
   - {fileID: 6527565688211632470}
   m_Bounds:
-    m_Center: {x: 0.35951567, y: 0.02343756, z: 0}
-    m_Extent: {x: 0.2889219, y: 0.7421877, z: 0}
+    m_Center: {x: 0.85193706, y: 0.96157885, z: 0}
+    m_Extent: {x: 0.6308534, y: 0.5282591, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &7003251454970698746
@@ -3598,8 +3598,8 @@ MonoBehaviour:
   - {fileID: 5894994019950980194}
   - {fileID: 8658963000090458723}
   m_Bounds:
-    m_Center: {x: -0.11741611, y: -0.8375138, z: 0}
-    m_Extent: {x: 0.3199317, y: 0.6491076, z: 0}
+    m_Center: {x: -0.18643004, y: -0.8450035, z: 0}
+    m_Extent: {x: 0.3267545, y: 0.6702682, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &8780616084665108535
