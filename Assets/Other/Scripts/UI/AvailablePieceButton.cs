@@ -14,6 +14,8 @@ public class AvailablePieceButton : MonoBehaviour
 
     bool _isSelected;
 
+    protected virtual bool CanPlace => true;
+
     void OnEnable()
     {
         Player.onPlaced += HandlePlacement;
@@ -42,7 +44,7 @@ public class AvailablePieceButton : MonoBehaviour
     public void Pressed()
     {
         if (Player.selectedPiece == piece) Player.selectedPiece = null;
-        else Player.selectedPiece = piece;
+        else if (CanPlace) Player.selectedPiece = piece;
     }
 
     // For overriding...

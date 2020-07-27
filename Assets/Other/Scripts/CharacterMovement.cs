@@ -1,7 +1,10 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
 {
+    const string COLLISION_LAYER = "Default";
+
 #pragma warning disable CS0649
     [SerializeField] float _speed;
     [SerializeField] float _jumpStrength;
@@ -38,11 +41,22 @@ public class CharacterMovement : MonoBehaviour
     void HandleNewMovement()
     {
         var mv = Player.curMovement;
-        if (mv.dir.y != 0)
+        if (mv.dir.y > 0)
         {
-            _rb.AddForce(new Vector2(0, mv.dir.y * _jumpStrength));
-        
-            _char.anim.SetTrigger("Jump");
+            var from = _char.jumpCheckPointFrom.position;
+            var to = _char.jumpCheckPointTo.position;
+            var offset = to - from;
+            var mask = LayerMask.GetMask(COLLISION_LAYER);
+
+            var canJump = Physics2D.RaycastAll(from, offset, offset.magnitude, mask)
+                .Any(_ => _.collider.gameObject != gameObject);
+
+            if (canJump)
+            {
+                _rb.AddForce(new Vector2(0, mv.dir.y * _jumpStrength));
+            
+                _char.anim.SetTrigger("Jump");
+            }
         }
     }
 }

@@ -6,9 +6,13 @@ public class Character : MonoBehaviour
     const float Y_CUTOFF = -12f;
 
     public Animator anim => _anim;
+    public Transform jumpCheckPointFrom => _jumpCheckPointFrom;
+    public Transform jumpCheckPointTo => _jumpCheckPointTo;
 
 #pragma warning disable CS0649
     [SerializeField] Animator _anim;
+    [SerializeField] Transform _jumpCheckPointFrom;
+    [SerializeField] Transform _jumpCheckPointTo;
 #pragma warning restore CS0649
 
     StartPoint _sp;

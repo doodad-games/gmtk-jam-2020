@@ -10,6 +10,8 @@ public class PlayPuzzlePiece : AvailablePieceButton
 
     int _numAvailable;
 
+    protected override bool CanPlace => _numAvailable != 0;
+
     public void Init(AvailablePieces ap)
     {
         piece = GameConfig.pieces[ap.pieceKey];
