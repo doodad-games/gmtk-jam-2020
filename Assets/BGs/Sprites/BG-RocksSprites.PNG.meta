@@ -1,0 +1,320 @@
+fileFormatVersion: 2
+guid: 877409f429951464d80e9b277f0ce6c5
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3839847445699794198
+    second: BG-RocksSprites_0
+  - first:
+      213: 3948501958058698667
+    second: BG-RocksSprites_1
+  - first:
+      213: -2449721651824596210
+    second: BG-RocksSprites_2
+  - first:
+      213: 1256093838622845854
+    second: BG-RocksSprites_3
+  - first:
+      213: 1206955809431895304
+    second: BG-RocksSprites_4
+  - first:
+      213: 1760980107170861268
+    second: BG-RocksSprites_5
+  - first:
+      213: -2702412712737074585
+    second: BG-RocksSprites_6
+  - first:
+      213: -1152648387937491971
+    second: BG-RocksSprites_7
+  - first:
+      213: 3136481821772633270
+    second: BG-RocksSprites_0
+  - first:
+      213: -226325805771193885
+    second: BG-RocksSprites_1
+  - first:
+      213: -7872490932656686779
+    second: BG-RocksSprites_2
+  - first:
+      213: -1199839414350170088
+    second: BG-RocksSprites_3
+  - first:
+      213: 681574450638487375
+    second: BG-RocksSprites_4
+  - first:
+      213: -3466053800204209643
+    second: BG-RocksSprites_5
+  - first:
+      213: -1153216773624141455
+    second: BG-RocksSprites_6
+  - first:
+      213: 3698755716101164785
+    second: BG-RocksSprites_7
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: BG-RocksSprites_0
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 1034
+        width: 419
+        height: 348
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b45a3f5995078b20800000000000000
+      internalID: 3136481821772633270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG-RocksSprites_1
+      rect:
+        serializedVersion: 2
+        x: 484
+        y: 1127
+        width: 313
+        height: 273
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e10187f0edebdcf0800000000000000
+      internalID: -226325805771193885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG-RocksSprites_2
+      rect:
+        serializedVersion: 2
+        x: 840
+        y: 412
+        width: 772
+        height: 960
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 549b38df43b4fb290800000000000000
+      internalID: -7872490932656686779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG-RocksSprites_3
+      rect:
+        serializedVersion: 2
+        x: 1631
+        y: 452
+        width: 289
+        height: 912
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8183520e860595fe0800000000000000
+      internalID: -1199839414350170088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG-RocksSprites_4
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 399
+        width: 479
+        height: 463
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4ff94a0a50757900800000000000000
+      internalID: 681574450638487375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG-RocksSprites_5
+      rect:
+        serializedVersion: 2
+        x: 1543
+        y: 26
+        width: 361
+        height: 398
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5127f62ce6a16efc0800000000000000
+      internalID: -3466053800204209643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG-RocksSprites_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 492
+        height: 309
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1796c135473feffe0800000000000000
+      internalID: -1153216773624141455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG-RocksSprites_7
+      rect:
+        serializedVersion: 2
+        x: 637
+        y: 0
+        width: 799
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1fec7291abe945330800000000000000
+      internalID: 3698755716101164785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
